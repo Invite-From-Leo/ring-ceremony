@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-<title>Kinjal Meghani &amp; Lara Vaghela — September 6, 2026</title>
+<title>Kinjal Meghani &amp; Lara Vaghela — A Hearty Invite</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Parisienne&family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Great+Vibes&family=Cinzel:wght@500;600&family=Josefin+Slab:wght@400;500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -300,11 +300,76 @@
 
   /* SAVE THE DATE */
   #savedate .big-date{
-    margin-top:22px; font-family:'Cormorant Garamond',serif; font-weight:400;
+    margin:0; font-family:'Cormorant Garamond',serif; font-weight:400;
     font-size:clamp(38px, 10vw, 54px); color:var(--burgundy); letter-spacing:.02em;
+    line-height:1;
   }
   #savedate .weekday{ margin-top:6px; font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--olive); }
 
+  /* ---------------- SCRATCH TO REVEAL ---------------- */
+  .scratch-wrap{
+    position:relative;
+    margin:22px auto 0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 14px 10px;
+    min-width: 260px;
+    border-radius:10px;
+  }
+  .scratch-wrap .big-date{
+    padding: 4px 6px 0;
+  }
+  .scratch-reveal-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .scratch-reveal-content .scratch-caption{
+    margin-top:4px;
+    padding-bottom:6px;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--olive);
+    opacity:.85;
+  }
+  .scratch-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border-radius:10px;
+    touch-action:none;
+    cursor:pointer;
+    box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(198,161,91,0.35);
+    transition: opacity .8s ease;
+  }
+  .scratch-hint{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    pointer-events:none;
+    color:var(--beige);
+    z-index:2;
+  }
+  .scratch-hint .scratch-icon{
+    font-size:20px;
+    animation: scratchWiggle 1.6s ease-in-out infinite;
+  }
+  @keyframes scratchWiggle{
+    0%,100%{ transform: rotate(-8deg) translateX(0); }
+    50%{ transform: rotate(8deg) translateX(3px); }
+  }
+  .scratch-hint .scratch-label{
+    font-size:10px; letter-spacing:.28em; text-transform:uppercase;
+    font-family:'Josefin Slab',serif; font-weight:600;
+  }
   /* VENUE */
   .map-frame{
     margin-top:28px; border-radius:4px; overflow:hidden; position:relative;
@@ -460,8 +525,19 @@
     <div class="eyebrow reveal">Save the Date</div>
     <h2 class="section-title reveal">The story continues</h2>
     <p class="section-copy reveal">Bound by destiny, we are exchanging rings and warmly invite you to join our celebration. Having our favorite people gather with us will transform this day into a timeless memory.</p>
-    <div class="big-date reveal">06 · 09 · 2026</div>
-    <div class="weekday reveal">Sunday</div>
+
+    <div class="scratch-wrap reveal" id="scratchWrap">
+      <div class="scratch-reveal-content" id="revealDate">
+        <div class="big-date">06 · 09 · 2026</div>
+        <div class="scratch-caption">Sunday Evening at 5 PM</div>
+      </div>
+      <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+      <div class="scratch-hint" id="scratchHint">
+        <span class="scratch-icon">✦</span>
+        <span class="scratch-label">Scratch to Reveal</span>
+      </div>
+    </div>
+
 	<p class="section-copy reveal" style="margin-top: 20px;">
     Come raise a toast, share a hug, make memories, and meet the real VIP of the evening —Leo 🐾
   </p>
@@ -488,12 +564,26 @@
     <div class="swatch" style="background:#44552C" title="Deep Olive"></div> 
     <div class="swatch" style="background:#C6A15B" title="Gold"></div> 
     <div class="swatch" style="background:#314322" title="Forest Green"></div> 
-    <div class="swatch" style="background:#EFE7DA" title="Amber"></div> 
+    <div class="swatch" style="background:#EFE7DA" title="Amber"></div><!-- Grounding Earthy Tones -->
+	<div class="swatch" style="background:#44552C" title="Deep Olive"></div> 
+	<div class="swatch" style="background:#C6A15B" title="Gold"></div> 
+	<div class="swatch" style="background:#314322" title="Forest Green"></div> 
+	<div class="swatch" style="background:#EFE7DA" title="Amber"></div>
+	<div class="swatch" style="background:#A37854" title="Taupe"></div> 
+	<div class="swatch" style="background:#8E704E" title="Sienna"></div> 
+	<div class="swatch" style="background:#6B6E4A" title="Moss"></div> 
+
+<!-- Soft Botanical & Floral Notes -->
+	<div class="swatch" style="background:#C8A2C8" title="Sage Flower"></div> 
+	<div class="swatch" style="background:#D4A373" title="Ochre Petal"></div> 
+	<div class="swatch" style="background:#E5A9A9" title="Dusty Rose"></div> 
+	<div class="swatch" style="background:#EAA146" title="Marigold"></div> 
+ 
   </div> 
   
   <div class="attire-note reveal" style="font-size: 1.1rem; line-height: 1.6;">
     <div class="section-copy reveal">Suits, gowns &amp; heels welcome</div> 
-    <p class="section-copy reveal">
+    <p class="section-copy reveal" style="font-size:15px; font-style:normal;">
       Note: We politely request that ladies avoid burgundy/wine red, and gentlemen avoid grey tones.
 	  </p>
     </span>
@@ -617,6 +707,26 @@
     }catch(e){}
   }
 
+  function playScratchTick(){
+    try{
+      var c = ctx();
+      var bufferSize = c.sampleRate * 0.08;
+      var buffer = c.createBuffer(1, bufferSize, c.sampleRate);
+      var data = buffer.getChannelData(0);
+      for(var i=0;i<bufferSize;i++){ data[i] = (Math.random()*2-1); }
+      var noise = c.createBufferSource();
+      noise.buffer = buffer;
+      var hp = c.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.value = 3500;
+      var g = c.createGain();
+      g.gain.setValueAtTime(0.06, c.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 0.08);
+      noise.connect(hp); hp.connect(g); g.connect(c.destination);
+      noise.start(); noise.stop(c.currentTime + 0.08);
+    }catch(e){}
+  }
+
   /* background song — plays the couple's chosen track when the envelope opens */
   var bgMusic = document.getElementById('bgMusic');
   var musicPlaying = false;
@@ -703,6 +813,7 @@
           startMusic();
           musicToggle.classList.add('playing');
           revealOnScroll();
+          initScratchCard();
         }
       }, '+=0.15');
   }
@@ -748,6 +859,177 @@
     els.forEach(function(el, i){
       el.dataset.d = Math.min(i % 6, 5) * 0.05;
       io.observe(el);
+    });
+  }
+
+  /* ---------- Scratch to Reveal (Save the Date) ---------- */
+  var scratchInitialized = false;
+  function initScratchCard(){
+    if(scratchInitialized) return;
+    scratchInitialized = true;
+
+    var wrap = document.getElementById('scratchWrap');
+    var dateEl = document.getElementById('revealDate');
+    var canvas = document.getElementById('scratchCanvas');
+    var hint = document.getElementById('scratchHint');
+    if(!wrap || !dateEl || !canvas) return;
+
+    var dctx = canvas.getContext('2d');
+    var dpr = Math.max(1, window.devicePixelRatio || 1);
+    var revealed = false;
+    var isDrawing = false;
+    var lastPoint = null;
+    var tickThrottle = 0;
+
+    function sizeCanvas(){
+      // size the wrap to match the text's natural box, with some padding
+      var rect = dateEl.getBoundingClientRect();
+      var w = Math.max(rect.width + 40, 220);
+      var h = Math.max(rect.height + 28, 70);
+      wrap.style.width = w + 'px';
+      wrap.style.height = h + 'px';
+
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawScratchLayer(w, h);
+    }
+
+    function drawScratchLayer(w, h){
+      dctx.clearRect(0, 0, w, h);
+      var grad = dctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#5c6f3e');
+      grad.addColorStop(0.5, '#44552C');
+      grad.addColorStop(1, '#333f21');
+      dctx.fillStyle = grad;
+      dctx.fillRect(0, 0, w, h);
+
+      // subtle foil texture flecks
+      dctx.save();
+      dctx.globalAlpha = 0.25;
+      for(var i=0; i<70; i++){
+        dctx.fillStyle = (i % 3 === 0) ? '#C6A15B' : '#EFE7DA';
+        var rx = Math.random()*w, ry = Math.random()*h, rs = Math.random()*1.6 + 0.4;
+        dctx.beginPath();
+        dctx.arc(rx, ry, rs, 0, Math.PI*2);
+        dctx.fill();
+      }
+      dctx.restore();
+
+      // thin gold border
+      dctx.save();
+      dctx.strokeStyle = 'rgba(198,161,91,0.55)';
+      dctx.lineWidth = 1;
+      dctx.strokeRect(0.5, 0.5, w-1, h-1);
+      dctx.restore();
+    }
+
+    function getPoint(evt){
+      var rect = canvas.getBoundingClientRect();
+      var clientX, clientY;
+      if(evt.touches && evt.touches.length){
+        clientX = evt.touches[0].clientX;
+        clientY = evt.touches[0].clientY;
+      } else {
+        clientX = evt.clientX;
+        clientY = evt.clientY;
+      }
+      return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    function scratchAt(x, y, prevPt){
+      dctx.globalCompositeOperation = 'destination-out';
+      dctx.lineJoin = 'round';
+      dctx.lineCap = 'round';
+      dctx.lineWidth = 34;
+      dctx.beginPath();
+      if(prevPt){
+        dctx.moveTo(prevPt.x, prevPt.y);
+        dctx.lineTo(x, y);
+      } else {
+        dctx.moveTo(x, y);
+        dctx.lineTo(x + 0.1, y + 0.1);
+      }
+      dctx.stroke();
+      dctx.globalCompositeOperation = 'source-over';
+    }
+
+    function checkRevealProgress(){
+      var w = canvas.width, h = canvas.height;
+      // sample a coarse grid rather than every pixel for performance
+      var sampleStep = 8;
+      var total = 0, cleared = 0;
+      var imgData;
+      try{
+        imgData = dctx.getImageData(0, 0, w, h).data;
+      }catch(e){ return; }
+      for(var y = 0; y < h; y += sampleStep){
+        for(var x = 0; x < w; x += sampleStep){
+          var idx = (y * w + x) * 4 + 3; // alpha channel
+          total++;
+          if(imgData[idx] < 60) cleared++;
+        }
+      }
+      var pct = cleared / total;
+      if(pct > 0.45 && !revealed){
+        revealed = true;
+        finishReveal();
+      }
+    }
+
+    function finishReveal(){
+      hint.style.opacity = '0';
+      canvas.style.pointerEvents = 'none';
+      gsap.to(canvas, {
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        onComplete: function(){
+          canvas.style.visibility = 'hidden';
+        }
+      });
+      gsap.fromTo(dateEl, { scale: 0.94 }, { scale: 1, duration: 0.6, ease: 'back.out(2)' });
+      try{ playClick(); }catch(e){}
+    }
+
+    function handleStart(evt){
+      if(revealed) return;
+      isDrawing = true;
+      hint.style.opacity = '0.15';
+      var p = getPoint(evt);
+      scratchAt(p.x, p.y, null);
+      lastPoint = p;
+      evt.preventDefault();
+    }
+    function handleMove(evt){
+      if(!isDrawing || revealed) return;
+      var p = getPoint(evt);
+      scratchAt(p.x, p.y, lastPoint);
+      lastPoint = p;
+      tickThrottle++;
+      if(tickThrottle % 3 === 0){ playScratchTick(); }
+      if(tickThrottle % 6 === 0){ checkRevealProgress(); }
+      evt.preventDefault();
+    }
+    function handleEnd(){
+      isDrawing = false;
+      lastPoint = null;
+      if(!revealed) checkRevealProgress();
+    }
+
+    canvas.addEventListener('mousedown', handleStart);
+    canvas.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleEnd);
+    canvas.addEventListener('touchstart', handleStart, { passive:false });
+    canvas.addEventListener('touchmove', handleMove, { passive:false });
+    canvas.addEventListener('touchend', handleEnd);
+    canvas.addEventListener('touchcancel', handleEnd);
+
+    sizeCanvas();
+    window.addEventListener('resize', function(){
+      if(!revealed) sizeCanvas();
     });
   }
 
